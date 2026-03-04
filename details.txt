@@ -1,0 +1,5 @@
+2 types de Bonus
+    - Bonus de parrainage est par inscription
+    - Bonus de niveau Lors que son niveau est rempli que ça soit par lui ou non
+
+Remplissage des niveaux d'un enfant ne doit pas être bloqué par son parrain :  Indepéndance des remplissages niveau
