@@ -13,11 +13,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            // AdminUserSeeder::class,
+            AdminUserSeeder::class,
             // MatrixTestSeeder::class,
             // WalletSeeder::class,
             // WalletTransactionSeeder::class,
-            FullMatrixSeeder::class,
+            // FullMatrixSeeder::class,
         ]);
     }
 }
