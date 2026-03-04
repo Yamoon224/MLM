@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminUserSeeder::class,
             // MatrixTestSeeder::class,
-            // WalletSeeder::class,
+            WalletSeeder::class,
             // WalletTransactionSeeder::class,
             // FullMatrixSeeder::class,
         ]);
