@@ -6,7 +6,7 @@
         </div>
     </div>
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('auth') }}">
         @csrf
         <div class="card mt-3 rounded-sm p-5 lg:p-7">
             <p class="text-center {{ $errors->get('auth') ? 'text-error' : 'text-slate-400' }} dark:text-navy-300">{{ $errors->get('auth') ? $errors->get('auth')[0] : '' }}</p>
