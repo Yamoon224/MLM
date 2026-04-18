@@ -10,11 +10,14 @@ use Symfony\Component\HttpFoundation\Response;
 class EnsureAccountIsActive
 {
     /**
-     * Routes exemptées de la vérification (en plus de logout).
+     * Routes exemptées de la vérification.
+     * Les routes matrix.tree sont gérées sans ce middleware (compte expiré = nœud toujours visible).
      */
     private const EXEMPT_ROUTES = [
         'account.renewal.show',
         'account.renewal.store',
+        'matrix.tree',
+        'matrix.tree.node',
         'logout',
     ];
 

@@ -33,7 +33,10 @@ Route::middleware(['auth', 'account.active'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
+// L'arbre matriciel reste accessible même si le compte est expiré (la position ne disparaît pas)
+Route::middleware('auth')->group(function () {
     Route::get('/matrix/tree', [MatrixTreeController::class, 'index'])->name('matrix.tree');
     Route::get('/matrix/tree/{userId}', [MatrixTreeController::class, 'show'])->name('matrix.tree.node');
 });

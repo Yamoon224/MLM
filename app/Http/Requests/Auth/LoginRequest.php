@@ -51,6 +51,17 @@ class LoginRequest extends FormRequest
             ]);
         }
 
+        // Si les credentials sont valides mais le compte est inactif/expiré,
+        // on déconnecte immédiatement et on renvoie vers la page de renouvellement.
+        if (! Auth::user()->is_active) {
+            Auth::logout();
+            RateLimiter::clear($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'auth' => trans('locale.account_disabled_login'),
+            ]);
+        }
+
         RateLimiter::clear($this->throttleKey());
     }
 

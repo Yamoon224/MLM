@@ -56,6 +56,9 @@
         'copy'                => 'Copy',
         'reset_password_hint'   => 'Choose a strong new password.',
 
+        'inactive_member'             => 'Inactive',
+        'account_disabled_login'      => 'Your account has been deactivated. Please contact support or use a renewal link.',
+
         // Account expiry & renewal
         'account_expired_title'       => 'Account Expired',
         'account_expired_subtitle'    => 'Your account has been deactivated. Please renew to continue.',

@@ -7,6 +7,7 @@
     $children = $node['children'];
     $filledSlots  = count($children);
     $emptySlots   = $maxChildren - $filledSlots;
+    $isInactive   = !$user->is_active;
 @endphp
 
 <div class="matrix-node flex flex-col items-center" data-depth="{{ $depth }}">
@@ -15,13 +16,21 @@
     <a href="{{ route('matrix.tree.node', $user->id) }}"
        class="group relative flex flex-col items-center">
         <div class="flex size-14 items-center justify-center rounded-full
-                    {{ $depth === 0 ? 'bg-primary ring-4 ring-primary/30' : 'bg-slate-200 dark:bg-navy-600' }}
+                    {{ $depth === 0 ? 'bg-primary ring-4 ring-primary/30' : ($isInactive ? 'bg-red-100 dark:bg-red-900/30 ring-2 ring-red-300 dark:ring-red-700' : 'bg-slate-200 dark:bg-navy-600') }}
                     transition-all duration-200 group-hover:ring-4 group-hover:ring-primary/30">
-            <svg class="size-7 {{ $depth === 0 ? 'text-white' : 'text-slate-500 dark:text-navy-200' }}"
-                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                      d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
+            @if($isInactive && $depth !== 0)
+                {{-- Icône verrou pour les comptes désactivés --}}
+                <svg class="size-7 text-red-400 dark:text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            @else
+                <svg class="size-7 {{ $depth === 0 ? 'text-white' : 'text-slate-500 dark:text-navy-200' }}"
+                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                          d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            @endif
         </div>
 
         {{-- Badge niveau --}}
@@ -33,12 +42,17 @@
 
     {{-- Infos utilisateur --}}
     <div class="mt-1 text-center">
-        <p class="text-xs font-semibold text-slate-700 dark:text-navy-100 line-clamp-1 max-w-[80px]">
+        <p class="text-xs font-semibold {{ $isInactive ? 'text-red-400 dark:text-red-500' : 'text-slate-700 dark:text-navy-100' }} line-clamp-1 max-w-[80px]">
             {{ $user->full_name }}
         </p>
         <p class="text-2xs text-slate-400 dark:text-navy-300 line-clamp-1">
             {{ $user->referral_code }}
         </p>
+        @if($isInactive)
+            <span class="inline-block mt-0.5 rounded px-1 py-0 text-2xs font-medium bg-red-100 text-red-500 dark:bg-red-900/30 dark:text-red-400">
+                @lang('locale.inactive_member')
+            </span>
+        @endif
     </div>
 
     {{-- Enfants --}}

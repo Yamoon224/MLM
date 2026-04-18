@@ -65,6 +65,10 @@
                 <span>@lang('locale.active_member')</span>
             </div>
             <div class="flex items-center gap-1.5">
+                <div class="size-4 rounded-full bg-red-100 ring-2 ring-red-300 dark:bg-red-900/30 dark:ring-red-700"></div>
+                <span>@lang('locale.inactive_member')</span>
+            </div>
+            <div class="flex items-center gap-1.5">
                 <div class="size-4 rounded-full border-2 border-dashed border-slate-300 dark:border-navy-500"></div>
                 <span>@lang('locale.empty_slot')</span>
             </div>

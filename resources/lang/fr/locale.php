@@ -57,6 +57,9 @@
         'entries'             => 'entrées',
         'copy'                => 'Copier',
 
+        'inactive_member'             => 'Inactif',
+        'account_disabled_login'      => 'Votre compte a été désactivé. Contactez le support ou utilisez un lien de renouvellement.',
+
         // Expiration et renouvellement de compte
         'account_expired_title'       => 'Compte Expiré',
         'account_expired_subtitle'    => 'Votre compte a été désactivé. Effectuez un paiement pour continuer.',
