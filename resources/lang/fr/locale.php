@@ -28,4 +28,18 @@
         'created_at' => "Date d'inscription",
         'level' => "Niveau matrice",
         'member' => "Membre:suffix",
+
+        'matrix_tree'         => 'Arbre Matriciel',
+        'matrix_tree_subtitle'=> 'Arbre généalogique de :name',
+        'back_to_my_tree'     => 'Retour à mon arbre',
+        'root_node'           => 'Nœud racine (vous)',
+        'active_member'       => 'Membre actif',
+        'empty_slot'          => 'Emplacement libre',
+        'depth_badge'         => 'Niveau de profondeur',
+
+        'forgot_password_hint'  => 'Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.',
+        'send_reset_link'       => 'Envoyer le lien',
+        'back_to_login'         => 'Retour à la connexion',
+        'reset_password'        => 'Réinitialiser le mot de passe',
+        'reset_password_hint'   => 'Choisissez un nouveau mot de passe fort.',
     );

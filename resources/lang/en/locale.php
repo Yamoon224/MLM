@@ -28,4 +28,18 @@
         'created_at' => "Created At",
         'level' => "Matrice Level",
         'member' => "Member:suffix",
+
+        'matrix_tree'         => 'Matrix Tree',
+        'matrix_tree_subtitle'=> 'Genealogy tree for :name',
+        'back_to_my_tree'     => 'Back to my tree',
+        'root_node'           => 'Root node (you)',
+        'active_member'       => 'Active member',
+        'empty_slot'          => 'Empty slot',
+        'depth_badge'         => 'Depth level',
+
+        'forgot_password_hint'  => 'Enter your email address and we will send you a link to reset your password.',
+        'send_reset_link'       => 'Send Reset Link',
+        'back_to_login'         => 'Back to login',
+        'reset_password'        => 'Reset Password',
+        'reset_password_hint'   => 'Choose a strong new password.',
     );
