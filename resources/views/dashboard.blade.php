@@ -54,6 +54,31 @@
                     <span class="text-xs text-purple-200">@lang('locale.total_earned')</span>
                     <span class="text-sm font-bold">{{ xaf($total_bonus) }}</span>
                 </div>
+
+                {{-- Bouton retrait --}}
+                <div class="mt-3 flex items-center gap-3">
+                    @php $pendingWithdrawal = auth()->user()->pendingWithdrawal(); @endphp
+                    @if ($pendingWithdrawal)
+                        <span class="inline-flex items-center gap-1 rounded-full bg-amber-400/20 px-3 py-1.5 text-xs font-medium text-amber-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            @lang('locale.withdrawal_pending_badge') — {{ xaf($pendingWithdrawal->amount) }}
+                        </span>
+                    @else
+                        <a href="{{ route('wallet.withdraw') }}"
+                           class="inline-flex items-center gap-1.5 rounded-lg bg-white/20 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/30 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                            @lang('locale.withdrawal_title')
+                        </a>
+                    @endif
+                    <a href="{{ route('wallet.history') }}"
+                       class="text-xs text-purple-300 hover:text-white transition">
+                        @lang('locale.withdrawal_history') →
+                    </a>
+                </div>
             </div>
         </div>
 

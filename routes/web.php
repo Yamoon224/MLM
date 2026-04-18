@@ -4,6 +4,8 @@ use App\Http\Controllers\AccountRenewalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MatrixTreeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WithdrawalController;
+use App\Http\Controllers\Admin\WithdrawalController as AdminWithdrawalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +41,20 @@ Route::middleware(['auth', 'account.active'])->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/matrix/tree', [MatrixTreeController::class, 'index'])->name('matrix.tree');
     Route::get('/matrix/tree/{userId}', [MatrixTreeController::class, 'show'])->name('matrix.tree.node');
+});
+
+// Gestion des retraits – utilisateur
+Route::middleware(['auth', 'account.active'])->group(function () {
+    Route::get('/wallet/withdraw', [WithdrawalController::class, 'create'])->name('wallet.withdraw');
+    Route::post('/wallet/withdraw', [WithdrawalController::class, 'store'])->name('wallet.withdraw.store');
+    Route::get('/wallet/history', [WithdrawalController::class, 'history'])->name('wallet.history');
+});
+
+// Gestion des retraits – admin
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/withdrawals', [AdminWithdrawalController::class, 'index'])->name('admin.withdrawals.index');
+    Route::post('/withdrawals/{withdrawal}/approve', [AdminWithdrawalController::class, 'approve'])->name('admin.withdrawals.approve');
+    Route::post('/withdrawals/{withdrawal}/reject', [AdminWithdrawalController::class, 'reject'])->name('admin.withdrawals.reject');
 });
 
 require __DIR__.'/auth.php';

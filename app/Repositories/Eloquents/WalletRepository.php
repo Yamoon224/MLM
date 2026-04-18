@@ -27,24 +27,50 @@ class WalletRepository implements WalletRepositoryInterface
         float $amount,
         string $type,
         ?string $reference = null
-    )
-    {
+    ) {
         return DB::transaction(function () use ($userId, $amount, $type, $reference) {
-    
+
             if ($reference && WalletTransaction::where('reference', $reference)->exists()) {
                 return;
             }
-    
+
             $wallet = Wallet::where('user_id', $userId)
                 ->lockForUpdate()
                 ->firstOrFail();
-    
+
             $wallet->increment('balance', $amount);
-    
+
             WalletTransaction::create([
                 'user_id'   => $userId,
                 'type'      => $type,
                 'amount'    => $amount,
+                'reference' => $reference
+            ]);
+        });
+    }
+
+    public function debit(
+        string $userId,
+        float $amount,
+        string $type,
+        ?string $reference = null
+    ) {
+        return DB::transaction(function () use ($userId, $amount, $type, $reference) {
+
+            $wallet = Wallet::where('user_id', $userId)
+                ->lockForUpdate()
+                ->firstOrFail();
+
+            if ($wallet->balance < $amount) {
+                throw new \RuntimeException('Solde insuffisant.');
+            }
+
+            $wallet->decrement('balance', $amount);
+
+            WalletTransaction::create([
+                'user_id'   => $userId,
+                'type'      => $type,
+                'amount'    => -$amount,  // montant négatif pour sortie
                 'reference' => $reference
             ]);
         });

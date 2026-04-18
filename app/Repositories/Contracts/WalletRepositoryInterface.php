@@ -7,4 +7,5 @@ interface WalletRepositoryInterface
     public function findByUser(string $userId);
     public function createForUser(string $userId);
     public function credit(string $userId, float $amount, string $type, ?string $reference = null);
+    public function debit(string $userId, float $amount, string $type, ?string $reference = null);
 }

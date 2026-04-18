@@ -81,6 +81,16 @@ class User extends Authenticatable
 		return $this->hasOne(Wallet::class);
 	}
 
+    public function withdrawalRequests()
+    {
+        return $this->hasMany(\App\Models\WithdrawalRequest::class);
+    }
+
+    public function pendingWithdrawal()
+    {
+        return $this->withdrawalRequests()->where('status', 'PENDING')->first();
+    }
+
 	// Relation closure table pour descendants
     public function descendants()
     {
