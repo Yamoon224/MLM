@@ -56,4 +56,17 @@
         'show'                => 'Afficher',
         'entries'             => 'entrées',
         'copy'                => 'Copier',
+
+        // Expiration et renouvellement de compte
+        'account_expired_title'       => 'Compte Expiré',
+        'account_expired_subtitle'    => 'Votre compte a été désactivé. Effectuez un paiement pour continuer.',
+        'expired_since'               => 'Expiré le',
+        'renewal_amount'              => 'Montant du renouvellement',
+        'payment_reference'           => 'Référence de paiement',
+        'payment_instructions_title'  => 'Comment renouveler votre compte ?',
+        'payment_step_1'              => 'Envoyez :amount FCFA par Mobile Money au numéro indiqué.',
+        'payment_step_2'              => 'Notez le numéro de référence de la transaction.',
+        'payment_step_3'              => 'Entrez la référence ci-dessous et soumettez.',
+        'renew_account'               => 'Renouveler mon compte',
+        'account_renewed'             => 'Votre compte a été renouvelé avec succès pour 1 an.',
     );

@@ -55,17 +55,6 @@ class DashboardController extends Controller
         $level_bonuses_earned = $user->wallet_transactions()
             ->where('type', 'LEVEL_BONUS')
             ->get();
-
-        return view('dashboard', compact(
-            'descendants',
-            'referral_bonus',
-            'level_bonus',
-            'total_bonus',
-            'network_stats',
-            'total_members',
-            'direct_members',
-            'recent_transactions',
-            'level_bonuses_earned',
         
         $total_bonus    = $referral_bonus + $level_bonus;
 

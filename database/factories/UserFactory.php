@@ -34,6 +34,7 @@ class UserFactory extends Factory
             'matrix_level'         => 0,
             'matrix_children_count'=> 0,
             'is_active'            => true,
+            'expires_at'           => now()->addYear(),
         ];
     }
 

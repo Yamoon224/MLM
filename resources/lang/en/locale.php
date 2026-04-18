@@ -55,4 +55,17 @@
         'entries'             => 'entries',
         'copy'                => 'Copy',
         'reset_password_hint'   => 'Choose a strong new password.',
+
+        // Account expiry & renewal
+        'account_expired_title'       => 'Account Expired',
+        'account_expired_subtitle'    => 'Your account has been deactivated. Please renew to continue.',
+        'expired_since'               => 'Expired on',
+        'renewal_amount'              => 'Renewal amount',
+        'payment_reference'           => 'Payment reference',
+        'payment_instructions_title'  => 'How to renew your account?',
+        'payment_step_1'              => 'Send :amount FCFA via Mobile Money to the designated number.',
+        'payment_step_2'              => 'Note the transaction reference number.',
+        'payment_step_3'              => 'Enter the reference below and submit.',
+        'renew_account'               => 'Renew my account',
+        'account_renewed'             => 'Your account has been successfully renewed for 1 year.',
     );

@@ -38,6 +38,7 @@ class RegistrationService
                 'sponsor_id' => $sponsor->id,
                 'matrix_parent_id' => $parent->id,
                 'matrix_level' => $parent->matrix_level + 1,
+                'expires_at' => now()->addYear(),
             ]);
 
             $this->users->incrementMatrixChildrenCount($parent->id);

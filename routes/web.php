@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountRenewalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MatrixTreeController;
 use App\Http\Controllers\ProfileController;
@@ -20,9 +21,15 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified', 'account.active'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    // Renouvellement de compte (accessible même si compte inactif)
+    Route::get('/account/expired', [AccountRenewalController::class, 'show'])->name('account.renewal.show');
+    Route::post('/account/renew', [AccountRenewalController::class, 'store'])->name('account.renewal.store');
+});
+
+Route::middleware(['auth', 'account.active'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

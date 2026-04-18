@@ -43,6 +43,7 @@ class User extends Authenticatable
 		'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'matrix_children_count' => 'int',
+        'expires_at' => 'datetime',
 	];
 
     public function sponsor()
@@ -105,5 +106,22 @@ class User extends Authenticatable
     public function childrenAtLevel(int $level)
     {
         return $this->descendants()->where('pivot_depth', $level);
+    }
+
+    public function accountRenewals()
+    {
+        return $this->hasMany(AccountRenewal::class);
+    }
+
+    public function isExpired(): bool
+    {
+        return $this->expires_at !== null && $this->expires_at->isPast();
+    }
+
+    public function scopeExpired($query)
+    {
+        return $query->where('is_active', true)
+            ->whereNotNull('expires_at')
+            ->where('expires_at', '<', now());
     }
 }
