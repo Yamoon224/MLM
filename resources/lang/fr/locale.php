@@ -42,4 +42,18 @@
         'back_to_login'         => 'Retour à la connexion',
         'reset_password'        => 'Réinitialiser le mot de passe',
         'reset_password_hint'   => 'Choisissez un nouveau mot de passe fort.',
+
+        'total_members'       => 'Total membres',
+        'direct_referrals'    => 'Parrainages directs',
+        'network_stats'       => 'Statistiques réseau',
+        'view_tree'           => 'Voir l\'arbre',
+        'total_earned'        => 'Total perçu',
+        'recent_transactions' => 'Dernières transactions',
+        'no_transactions'     => 'Aucune transaction',
+        'unlocked_levels'     => 'Paliers débloqués',
+        'no_members_yet'      => 'Aucun membre pour l\'instant',
+        'share_referral_hint' => 'Partagez votre code de parrainage pour agrandir votre réseau.',
+        'show'                => 'Afficher',
+        'entries'             => 'entrées',
+        'copy'                => 'Copier',
     );
