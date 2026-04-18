@@ -43,7 +43,7 @@
                         @lang('locale.payment_instructions_title')
                     </p>
                     <ol class="space-y-1 text-sm text-amber-700 dark:text-amber-400 list-decimal list-inside">
-                        <li>@lang('locale.payment_step_1', ['amount' => number_format($amount, 0, ',', ' ')])</li>
+                        <li>@lang('locale.payment_step_1', ['amount' => xaf($amount)])</li>
                         <li>@lang('locale.payment_step_2')</li>
                         <li>@lang('locale.payment_step_3')</li>
                     </ol>
@@ -55,7 +55,7 @@
                         @lang('locale.renewal_amount')
                     </span>
                     <span class="text-xl font-bold text-primary dark:text-accent-light">
-                        {{ number_format($amount, 0, ',', ' ') }}&nbsp;FCFA
+                        {{ xaf($amount) }}
                     </span>
                 </div>
 

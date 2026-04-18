@@ -14,8 +14,7 @@
                     <div>
                         <p class="text-xs font-medium uppercase tracking-wider text-purple-200">@lang('locale.your_balance')</p>
                         <p class="mt-1 text-3xl font-bold">
-                            {{ number_format(auth()->user()->wallet->balance ?? 0, 0, ',', ' ') }}
-                            <span class="text-lg font-normal text-purple-200">FCFA</span>
+                            {{ xaf(auth()->user()->wallet->balance ?? 0) }}
                         </p>
                     </div>
                     <div class="flex size-12 items-center justify-center rounded-xl bg-white/15">
@@ -41,19 +40,19 @@
                 <div class="mt-4 grid grid-cols-2 gap-3">
                     <div class="rounded-xl bg-white/10 p-3">
                         <p class="text-xs text-purple-200">@lang('locale.referral_bonus')</p>
-                        <p class="mt-1 text-lg font-semibold">{{ number_format($referral_bonus, 0, ',', ' ') }} <span class="text-xs font-normal text-purple-200">FCFA</span></p>
-                        <p class="mt-1 text-xs text-green-300">5 000 / filleul</p>
+                        <p class="mt-1 text-lg font-semibold">{{ xaf($referral_bonus) }}</p>
+                        <p class="mt-1 text-xs text-green-300">5 000 FCFA / filleul</p>
                     </div>
                     <div class="rounded-xl bg-white/10 p-3">
                         <p class="text-xs text-purple-200">@lang('locale.level_bonus')</p>
-                        <p class="mt-1 text-lg font-semibold">{{ number_format($level_bonus, 0, ',', ' ') }} <span class="text-xs font-normal text-purple-200">FCFA</span></p>
+                        <p class="mt-1 text-lg font-semibold">{{ xaf($level_bonus) }}</p>
                         <p class="mt-1 text-xs text-yellow-300">@lang('locale.unlocked_levels')</p>
                     </div>
                 </div>
 
                 <div class="mt-3 flex items-center justify-between border-t border-white/20 pt-3">
                     <span class="text-xs text-purple-200">@lang('locale.total_earned')</span>
-                    <span class="text-sm font-bold">{{ number_format($total_bonus, 0, ',', ' ') }} FCFA</span>
+                    <span class="text-sm font-bold">{{ xaf($total_bonus) }}</span>
                 </div>
             </div>
         </div>
@@ -91,7 +90,7 @@
                             <div class="flex items-center gap-2">
                                 <span class="flex size-5 items-center justify-center rounded-full {{ $levelColors[$lvl-1] }} text-white font-bold" style="font-size:10px">{{ $lvl }}</span>
                                 <span class="text-slate-600 dark:text-navy-200">@lang('locale.level') {{ $lvl }}</span>
-                                <span class="text-slate-400 dark:text-navy-400">— {{ number_format($levelAmounts[$lvl], 0, ',', ' ') }} FCFA</span>
+                                <span class="text-slate-400 dark:text-navy-400">— {{ xaf($levelAmounts[$lvl]) }}</span>
                             </div>
                             <span class="font-medium text-slate-700 dark:text-navy-100">{{ $stat['count'] }}/{{ $stat['max'] }}</span>
                         </div>
@@ -138,7 +137,7 @@
                             </p>
                             <p class="text-xs text-slate-400 dark:text-navy-400">{{ $tx->created_at->diffForHumans() }}</p>
                         </div>
-                        <span class="text-sm font-semibold text-success">+{{ number_format($tx->amount, 0, ',', ' ') }}</span>
+                        <span class="text-sm font-semibold text-success">+{{ xaf($tx->amount) }}</span>
                     </div>
                     @empty
                     <div class="flex flex-col items-center justify-center py-8 text-slate-400 dark:text-navy-400">
