@@ -45,6 +45,14 @@
             @see https://alpinejs.dev/directives/teleport -->
         <div id="x-teleport-target"></div>
         <script>
+            function togglePw(btn) {
+                const wrapper = btn.closest('[data-pw-wrapper]');
+                const input = wrapper.querySelector('input');
+                const isPassword = input.type === 'password';
+                input.type = isPassword ? 'text' : 'password';
+                wrapper.querySelector('.pw-eye').classList.toggle('hidden', !isPassword);
+                wrapper.querySelector('.pw-eye-off').classList.toggle('hidden', isPassword);
+            }
             window.addEventListener("DOMContentLoaded", () => Alpine.start());
         </script>
     </body>
