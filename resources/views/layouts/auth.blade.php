@@ -66,8 +66,9 @@
                 const input = wrapper.querySelector('input');
                 const isPassword = input.type === 'password';
                 input.type = isPassword ? 'text' : 'password';
-                wrapper.querySelector('.pw-eye').classList.toggle('hidden', !isPassword);
-                wrapper.querySelector('.pw-eye-off').classList.toggle('hidden', isPassword);
+                // quand on affiche le mot de passe (isPassword=true) : cacher l'œil ouvert, montrer l'œil barré
+                wrapper.querySelector('.pw-eye').classList.toggle('hidden', isPassword);
+                wrapper.querySelector('.pw-eye-off').classList.toggle('hidden', !isPassword);
             }
             window.addEventListener("DOMContentLoaded", () => Alpine.start());
         </script>
