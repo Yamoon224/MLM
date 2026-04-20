@@ -111,4 +111,23 @@
         'actions' => 'Actions',
         'user'    => 'Utilisateur',
         'confirm' => 'Confirmer',
+
+        // Utilisateurs admin
+        'admin_users'      => 'Utilisateurs',
+        'search'           => 'Rechercher',
+        'search_user'      => 'Rechercher un utilisateur...',
+        'no_users_found'   => 'Aucun utilisateur trouvé.',
+        'active'           => 'Actif',
+        'inactive'         => 'Inactif',
+
+        // Profil & mot de passe
+        'profile_info'        => 'Informations du profil',
+        'update_password'     => 'Modifier le mot de passe',
+        'profile_updated'     => 'Profil mis à jour avec succès.',
+        'password_updated'    => 'Mot de passe mis à jour.',
+        'save'                => 'Enregistrer',
+        'save_new_password'   => 'Enregistrer le nouveau mot de passe',
+        'current_password'    => 'Mot de passe actuel',
+        'new_password'        => 'Nouveau mot de passe',
+        'confirm_password'    => 'Confirmer le mot de passe',
     );

@@ -110,4 +110,23 @@
         'actions' => 'Actions',
         'user'    => 'User',
         'confirm' => 'Confirm',
+
+        // Admin users
+        'admin_users'      => 'Users',
+        'search'           => 'Search',
+        'search_user'      => 'Search a user...',
+        'no_users_found'   => 'No user found.',
+        'active'           => 'Active',
+        'inactive'         => 'Inactive',
+
+        // Profile & password
+        'profile_info'        => 'Profile Information',
+        'update_password'     => 'Update Password',
+        'profile_updated'     => 'Profile updated successfully.',
+        'password_updated'    => 'Password updated.',
+        'save'                => 'Save',
+        'save_new_password'   => 'Save New Password',
+        'current_password'    => 'Current Password',
+        'new_password'        => 'New Password',
+        'confirm_password'    => 'Confirm Password',
     );

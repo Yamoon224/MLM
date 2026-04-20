@@ -13,7 +13,7 @@
             <!-- Main Sections Links -->
             <div class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
                 <!-- Dashobards -->
-                <a href="{{ route('dashboard') }}"
+                <button @click="$store.global.isSidebarExpanded = !$store.global.isSidebarExpanded"
                     class="flex size-11 items-center justify-center rounded-sm {{ request()->routeIs('dashboard') ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : 'text-slate-400 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-600' }} outline-hidden transition-colors duration-200"
                     x-tooltip.placement.right="'@lang('locale.dashboard')'">
                     <svg class="size-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -26,17 +26,17 @@
                         <path fill="currentColor"
                             d="M17.5 5h-1a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5Z" />
                     </svg>
-                </a>
+                </button>
 
                 <!-- Matrix Tree -->
-                <a href="{{ route('matrix.tree') }}"
+                <button @click="$store.global.isSidebarExpanded = !$store.global.isSidebarExpanded"
                     class="flex size-11 items-center justify-center rounded-sm {{ request()->routeIs('matrix.tree*') ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : 'text-slate-400 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-600' }} outline-hidden transition-colors duration-200"
                     x-tooltip.placement.right="'@lang('locale.matrix_tree')'">
                     <svg class="size-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                               d="M12 2a2 2 0 110 4 2 2 0 010-4zM5 10a2 2 0 110 4 2 2 0 010-4zm14 0a2 2 0 110 4 2 2 0 010-4zM12 6v4M5 14v4m14-4v4M8 12h8" />
                     </svg>
-                </a>
+                </button>
             </div>
 
             <!-- Bottom Links -->
@@ -92,13 +92,16 @@
                                     </div>
                                 </a>
                                 <div class="mt-3 px-4">
-                                    <a class="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
-                                        href="{{ route('logout') }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                                        </svg>
-                                        <span>@lang('locale.logout')</span>
-                                    </a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit"
+                                            class="btn h-9 w-full space-x-2 bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                            </svg>
+                                            <span>@lang('locale.logout')</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -135,6 +138,13 @@
                             :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
                             class="flex py-2 text-xs-plus tracking-wide outline-hidden transition-colors duration-300 ease-in-out">
                             @lang('locale.dashboard')
+                        </a>
+                    </li>
+                    <li>
+                        <a x-data="navLink" href="{{ route('matrix.tree') }}"
+                            :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
+                            class="flex py-2 text-xs-plus tracking-wide outline-hidden transition-colors duration-300 ease-in-out">
+                            @lang('locale.matrix_tree')
                         </a>
                     </li>
                     <li>
