@@ -1,4 +1,4 @@
-<div class="sidebar print:hidden">
+<div class="sidebar print:hidden" :class="{'is-sidebar-open': $store.global.isSidebarExpanded}">
     <!-- Main Sidebar -->
     <div class="main-sidebar">
         <div
@@ -46,7 +46,9 @@
                     @click.outside="isShowPopper && (isShowPopper = false)" class="flex">
                     <button @click="isShowPopper = !isShowPopper" x-ref="popperRef"
                         class="avatar size-12 cursor-pointer">
-                        <img class="rounded-full" src="{{ asset('images/avatar/avatar-12.jpg') }}" alt="avatar" />
+                        <div class="flex size-12 items-center justify-center rounded-full bg-primary text-white text-base font-bold dark:bg-accent">
+                            {{ mb_strtoupper(mb_substr(auth()->user()->full_name, 0, 1)) }}{{ mb_strtoupper(mb_substr(explode(' ', trim(auth()->user()->full_name))[1] ?? '', 0, 1)) }}
+                        </div>
                         <span
                             class="absolute right-0 size-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
                     </button>
