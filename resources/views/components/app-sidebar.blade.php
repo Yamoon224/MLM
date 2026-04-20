@@ -1,4 +1,4 @@
-<div class="sidebar print:hidden" :class="{'is-sidebar-open': $store.global.isSidebarExpanded}">
+<div class="sidebar print:hidden">
     <!-- Main Sidebar -->
     <div class="main-sidebar">
         <div
