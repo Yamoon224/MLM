@@ -13,7 +13,7 @@
             <!-- Main Sections Links -->
             <div class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
                 <!-- Dashobards -->
-                <button @click="$store.global.isSidebarExpanded = !$store.global.isSidebarExpanded"
+                <a href="{{ route('dashboard') }}"
                     class="flex size-11 items-center justify-center rounded-sm {{ request()->routeIs('dashboard') ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : 'text-slate-400 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-600' }} outline-hidden transition-colors duration-200"
                     x-tooltip.placement.right="'@lang('locale.dashboard')'">
                     <svg class="size-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -26,17 +26,17 @@
                         <path fill="currentColor"
                             d="M17.5 5h-1a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5Z" />
                     </svg>
-                </button>
+                </a>
 
                 <!-- Matrix Tree -->
-                <button @click="$store.global.isSidebarExpanded = !$store.global.isSidebarExpanded"
+                <a href="{{ route('matrix.tree') }}"
                     class="flex size-11 items-center justify-center rounded-sm {{ request()->routeIs('matrix.tree*') ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : 'text-slate-400 dark:text-navy-300 hover:bg-slate-100 dark:hover:bg-navy-600' }} outline-hidden transition-colors duration-200"
                     x-tooltip.placement.right="'@lang('locale.matrix_tree')'">
                     <svg class="size-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                               d="M12 2a2 2 0 110 4 2 2 0 010-4zM5 10a2 2 0 110 4 2 2 0 010-4zm14 0a2 2 0 110 4 2 2 0 010-4zM12 6v4M5 14v4m14-4v4M8 12h8" />
                     </svg>
-                </button>
+                </a>
             </div>
 
             <!-- Bottom Links -->
