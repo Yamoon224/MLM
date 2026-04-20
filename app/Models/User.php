@@ -40,6 +40,7 @@ class User extends Authenticatable
 		'matrix_parent_id' => 'int',
 		'matrix_level' => 'int',
 		'is_active' => 'bool',
+		'is_admin' => 'bool',
 		'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'matrix_children_count' => 'int',

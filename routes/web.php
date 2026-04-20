@@ -6,6 +6,7 @@ use App\Http\Controllers\MatrixTreeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\Admin\WithdrawalController as AdminWithdrawalController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +56,19 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/withdrawals', [AdminWithdrawalController::class, 'index'])->name('admin.withdrawals.index');
     Route::post('/withdrawals/{withdrawal}/approve', [AdminWithdrawalController::class, 'approve'])->name('admin.withdrawals.approve');
     Route::post('/withdrawals/{withdrawal}/reject', [AdminWithdrawalController::class, 'reject'])->name('admin.withdrawals.reject');
+
+    // Gestion des utilisateurs
+    Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/{user}/reset-password', [AdminUserController::class, 'showResetPassword'])->name('admin.users.reset-password');
+    Route::patch('/users/{user}/reset-password', [AdminUserController::class, 'resetPassword'])->name('admin.users.reset-password.update');
 });
+
+// Changement de langue
+Route::get('/locale/{locale}', function (string $locale) {
+    if (in_array($locale, ['fr', 'en'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('locale.switch');
 
 require __DIR__.'/auth.php';

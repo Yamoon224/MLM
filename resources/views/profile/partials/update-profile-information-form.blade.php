@@ -1,64 +1,51 @@
-<section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
-        </h2>
+<form method="POST" action="{{ route('profile.update') }}" class="space-y-4">
+    @csrf
+    @method('patch')
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
-    </header>
-
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
-        @csrf
-    </form>
-
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
-        @csrf
-        @method('patch')
-
-        <div>
-            <x-input-label for="full_name" :value="__('Name')" />
-            <x-text-input id="full_name" name="full_name" type="text" class="mt-1 block w-full" :value="old('full_name', $user->full_name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('full_name')" />
+    @if (session('status') === 'profile-updated')
+        <div class="rounded-lg border border-success/30 bg-success/10 px-4 py-2 text-xs font-medium text-success">
+            @lang('locale.profile_updated')
         </div>
+    @endif
 
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+    <label class="block">
+        <span class="text-xs font-medium text-slate-600 dark:text-navy-200">@lang('locale.full_name')</span>
+        <input type="text" name="full_name" value="{{ old('full_name', $user->full_name) }}" required
+               class="form-input mt-1 w-full rounded-sm border border-slate-300 bg-transparent px-3 py-2 text-sm
+                      placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary
+                      dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent
+                      @error('full_name') border-error dark:border-error @enderror" />
+        @error('full_name')
+            <p class="mt-1 text-xs text-error">{{ $message }}</p>
+        @enderror
+    </label>
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
+    <label class="block">
+        <span class="text-xs font-medium text-slate-600 dark:text-navy-200">@lang('locale.email')</span>
+        <input type="email" name="email" value="{{ old('email', $user->email) }}" required
+               class="form-input mt-1 w-full rounded-sm border border-slate-300 bg-transparent px-3 py-2 text-sm
+                      placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary
+                      dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent
+                      @error('email') border-error dark:border-error @enderror" />
+        @error('email')
+            <p class="mt-1 text-xs text-error">{{ $message }}</p>
+        @enderror
+    </label>
 
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
+    <label class="block">
+        <span class="text-xs font-medium text-slate-600 dark:text-navy-200">@lang('locale.phone')</span>
+        <input type="text" name="phone" value="{{ old('phone', $user->phone) }}"
+               class="form-input mt-1 w-full rounded-sm border border-slate-300 bg-transparent px-3 py-2 text-sm
+                      placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary
+                      dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent
+                      @error('phone') border-error dark:border-error @enderror" />
+        @error('phone')
+            <p class="mt-1 text-xs text-error">{{ $message }}</p>
+        @enderror
+    </label>
 
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
-            @endif
-        </div>
-
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-            @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
-            @endif
-        </div>
-    </form>
-</section>
+    <button type="submit"
+            class="btn mt-2 w-full rounded-sm bg-primary py-2 text-sm font-medium text-white hover:bg-primary-focus dark:bg-accent dark:hover:bg-accent-focus">
+        @lang('locale.save')
+    </button>
+</form>

@@ -22,32 +22,59 @@
         </div>
 
         {{-- Stats par niveau --}}
-        <div class="grid grid-cols-5 gap-3 mb-6">
-            @foreach($stats as $level => $count)
-            <div class="card flex flex-col items-center py-4 px-3">
-                <span class="flex size-8 items-center justify-center rounded-full
-                             {{ $count > 0 ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : 'bg-slate-100 text-slate-400 dark:bg-navy-700 dark:text-navy-400' }}
-                             text-sm font-bold mb-1">
-                    {{ $count }}
-                </span>
-                <p class="text-xs text-slate-500 dark:text-navy-300 text-center">
-                    @lang('locale.level') {{ $level }}
-                </p>
-                <div class="mt-1.5 w-full bg-slate-100 dark:bg-navy-600 rounded-full h-1">
-                    @php
-                        $max = pow(5, $level);
-                        $percent = $max > 0 ? min(100, round($count / $max * 100)) : 0;
-                    @endphp
-                    <div class="h-1 rounded-full {{ $count > 0 ? 'bg-primary' : 'bg-slate-200 dark:bg-navy-500' }}"
-                         style="width: {{ $percent }}%"></div>
+        <div class="mb-6 space-y-3">
+            {{-- Ligne 1 : niveaux 1-3 --}}
+            <div class="grid grid-cols-3 gap-3">
+                @foreach(array_slice($stats, 0, 3, true) as $level => $count)
+                <div class="card flex flex-col items-center py-4 px-3">
+                    <span class="flex size-8 items-center justify-center rounded-full
+                                 {{ $count > 0 ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : 'bg-slate-100 text-slate-400 dark:bg-navy-700 dark:text-navy-400' }}
+                                 text-sm font-bold mb-1">
+                        {{ $count }}
+                    </span>
+                    <p class="text-xs text-slate-500 dark:text-navy-300 text-center">
+                        @lang('locale.level') {{ $level }}
+                    </p>
+                    <div class="mt-1.5 w-full bg-slate-100 dark:bg-navy-600 rounded-full h-1">
+                        @php
+                            $max = pow(5, $level);
+                            $percent = $max > 0 ? min(100, round($count / $max * 100)) : 0;
+                        @endphp
+                        <div class="h-1 rounded-full {{ $count > 0 ? 'bg-primary' : 'bg-slate-200 dark:bg-navy-500' }}"
+                             style="width: {{ $percent }}%"></div>
+                    </div>
+                    <p class="text-2xs text-slate-400 dark:text-navy-400 mt-1">{{ $percent }}%</p>
                 </div>
-                <p class="text-2xs text-slate-400 dark:text-navy-400 mt-1">{{ $percent }}%</p>
+                @endforeach
             </div>
-            @endforeach
+            {{-- Ligne 2 : niveaux 4-5 --}}
+            <div class="grid grid-cols-2 gap-3">
+                @foreach(array_slice($stats, 3, 2, true) as $level => $count)
+                <div class="card flex flex-col items-center py-4 px-3">
+                    <span class="flex size-8 items-center justify-center rounded-full
+                                 {{ $count > 0 ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : 'bg-slate-100 text-slate-400 dark:bg-navy-700 dark:text-navy-400' }}
+                                 text-sm font-bold mb-1">
+                        {{ $count }}
+                    </span>
+                    <p class="text-xs text-slate-500 dark:text-navy-300 text-center">
+                        @lang('locale.level') {{ $level }}
+                    </p>
+                    <div class="mt-1.5 w-full bg-slate-100 dark:bg-navy-600 rounded-full h-1">
+                        @php
+                            $max = pow(5, $level);
+                            $percent = $max > 0 ? min(100, round($count / $max * 100)) : 0;
+                        @endphp
+                        <div class="h-1 rounded-full {{ $count > 0 ? 'bg-primary' : 'bg-slate-200 dark:bg-navy-500' }}"
+                             style="width: {{ $percent }}%"></div>
+                    </div>
+                    <p class="text-2xs text-slate-400 dark:text-navy-400 mt-1">{{ $percent }}%</p>
+                </div>
+                @endforeach
+            </div>
         </div>
 
         {{-- Arbre généalogique --}}
-        <div class="card p-4 sm:p-6 overflow-x-auto">
+        <div class="card p-4 sm:p-6 overflow-x-auto my-2">
             <div id="matrix-tree-wrapper"
                  class="min-w-max mx-auto py-4 px-2">
                 @include('matrix._node', ['node' => $tree])

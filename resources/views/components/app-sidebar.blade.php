@@ -56,11 +56,11 @@
                             class="popper-box w-64 rounded-sm border border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700">
                             <div
                                 class="flex items-center space-x-4 rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
-                                <div class="avatar size-14">
-                                    <img class="rounded-full" src="{{ asset('images/avatar/avatar-12.jpg') }}" alt="avatar" />
+                                <div class="flex size-14 items-center justify-center rounded-full bg-primary text-white text-xl font-bold dark:bg-accent">
+                                    {{ mb_strtoupper(mb_substr(auth()->user()->full_name, 0, 1)) }}{{ mb_strtoupper(mb_substr(explode(' ', trim(auth()->user()->full_name))[1] ?? '', 0, 1)) }}
                                 </div>
                                 <div>
-                                    <a href="dashboards-crypto-1.html#"
+                                    <a href="{{ route('profile.edit') }}"
                                         class="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light">
                                         {{ auth()->user()->full_name }}
                                     </a>
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-col pt-2 pb-5">
-                                <a href="dashboards-crypto-1.html#"
+                                <a href="{{ route('profile.edit') }}"
                                     class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-hidden transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                     <div
                                         class="flex size-8 items-center justify-center rounded-sm bg-warning text-white">
@@ -138,12 +138,28 @@
                         </a>
                     </li>
                     <li>
-                        <a x-data="navLink" href="dashboards-orders.html"
+                        <a x-data="navLink" href="{{ route('wallet.withdraw') }}"
                             :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
                             class="flex py-2 text-xs-plus tracking-wide outline-hidden transition-colors duration-300 ease-in-out">
                             @lang('locale.withdrawal', ['suffix'=>'s'])
                         </a>
                     </li>
+                    @if (auth()->user()?->is_admin)
+                    <li>
+                        <a x-data="navLink" href="{{ route('admin.withdrawals.index') }}"
+                            :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
+                            class="flex py-2 text-xs-plus tracking-wide outline-hidden transition-colors duration-300 ease-in-out">
+                            @lang('locale.admin_withdrawals')
+                        </a>
+                    </li>
+                    <li>
+                        <a x-data="navLink" href="{{ route('admin.users.index') }}"
+                            :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
+                            class="flex py-2 text-xs-plus tracking-wide outline-hidden transition-colors duration-300 ease-in-out">
+                            @lang('locale.admin_users')
+                        </a>
+                    </li>
+                    @endif
                 </ul>
                 <div class="my-3 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div>
             </div>
