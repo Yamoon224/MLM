@@ -1,1 +1,2 @@
-/* CSS géré par le template via public/css/app.css */
+/* Utilitaires Tailwind uniquement - le template gère base/components/thème */
+@tailwind utilities;

@@ -9,6 +9,7 @@
         <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+        @vite(['resources/css/app.css'])
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
