@@ -1,11 +1,11 @@
 <div class="sidebar print:hidden" x-data="{
     activePanel: @js(request()->routeIs('matrix.*') ? 'matrix' : 'dashboard'),
     togglePanel(section) {
-        if (this.activePanel === section && $store.global.isSidebarExpanded) {
-            $store.global.isSidebarExpanded = false;
+        if (this.activePanel === section && this.$store.global.isSidebarExpanded) {
+            this.$store.global.isSidebarExpanded = false;
         } else {
             this.activePanel = section;
-            $store.global.isSidebarExpanded = true;
+            this.$store.global.isSidebarExpanded = true;
         }
     }
 }">
