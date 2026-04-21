@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="bg-slate-50 dark:bg-navy-900">
     <head>
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -26,7 +26,7 @@
             localStorage.getItem("_x_darkMode_on") === "true" && document.documentElement.classList.add("dark");
         </script>
     </head>
-    <body x-data class="is-header-blur" x-bind="$store.global.documentBody">
+    <body x-data class="is-header-blur bg-slate-50 dark:bg-navy-900" x-bind="$store.global.documentBody">
         <x-app-preloader></x-app-preloader>
 
         <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900" x-cloak>

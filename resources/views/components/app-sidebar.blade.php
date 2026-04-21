@@ -8,7 +8,7 @@
             this.$store.global.isSidebarExpanded = true;
         }
     }
-}">
+}" x-init="$store.global.isSidebarExpanded = false">
     <!-- Main Sidebar -->
     <div class="main-sidebar">
         <div
