@@ -40,8 +40,16 @@ class LoginRequest extends FormRequest
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
-        $keyLogin = filter_var(request()->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
-        $this->merge([$keyLogin => request()->input('username')]);
+        $login = request()->input('username');
+
+        if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
+            $keyLogin = 'email';
+        } elseif (preg_match('/^[0-9]+$/', $login)) {
+            $keyLogin = 'phone';
+        } else {
+            $keyLogin = 'full_name';
+        }
+        $this->merge([$keyLogin => $login]);
 
         if (! Auth::attempt($this->only($keyLogin, 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
