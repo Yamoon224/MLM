@@ -44,7 +44,11 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = User::where('id', $userId)
             ->lockForUpdate()
-            ->firstOrFail();
+            ->first();
+
+        if (!$user) {
+            throw new \RuntimeException("Utilisateur introuvable : {$userId}.");
+        }
 
         $user->increment('matrix_children_count');
     }

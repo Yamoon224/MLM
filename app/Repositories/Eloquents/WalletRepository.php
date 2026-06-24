@@ -36,7 +36,11 @@ class WalletRepository implements WalletRepositoryInterface
 
             $wallet = Wallet::where('user_id', $userId)
                 ->lockForUpdate()
-                ->firstOrFail();
+                ->first();
+
+            if (!$wallet) {
+                throw new \RuntimeException("Portefeuille introuvable pour l'utilisateur {$userId}.");
+            }
 
             $wallet->increment('balance', $amount);
 
@@ -59,7 +63,11 @@ class WalletRepository implements WalletRepositoryInterface
 
             $wallet = Wallet::where('user_id', $userId)
                 ->lockForUpdate()
-                ->firstOrFail();
+                ->first();
+
+            if (!$wallet) {
+                throw new \RuntimeException("Portefeuille introuvable pour l'utilisateur {$userId}.");
+            }
 
             if ($wallet->balance < $amount) {
                 throw new \RuntimeException('Solde insuffisant.');
